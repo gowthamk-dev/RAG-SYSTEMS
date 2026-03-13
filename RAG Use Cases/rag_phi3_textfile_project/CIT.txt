@@ -1,0 +1,77 @@
+About the Department
+B.Tech Artificial Intelligence and Data Science
+AI and Data Science are the key enablers for disruptive innovations of this century, these emerging technological revolutions have reshaped our work and life style. From the start of June 2021, CIT, Coimbatore establishes a new department “Artificial Intelligence and Data Science”. The department will be driven by its commitment to excel in research, design and development of next generation cutting-edge technologies in the area of Artificial Intelligence and Data Analytics. Our mission is to cultivate Industry-Academia partnership, drive collaborative research with other domains and equip our talents to contribute on multi-disciplinary projects by translating the developed technology into real world impacts.
+
+The unique undergraduate program, B.Tech. Artificial Intelligence and Data Science (AI & DS), aims the students to acquire technical skills to perform data processing, analysis and visualization in multiple real-time applications. Program envisions to equip students with the ability to identify and assess societal, health, safety and cultural issues with an emphasize on identifying their consequent responsibilities as engineers of offering optimal and effective solutions for the same.
+
+The designed curriculum is interdisciplinary at the core – straddling computer Science blended with Mathematical Foundations, Artificial Intelligence Techniques, Machine Learning Principles, Statistical Methods, Data Science Philosophies, and their applications across multiple domains. Curriculum also covers on sub-field such as Big Data Analytics, Deep Learning and Computer Vision and Pattern Recognition.
+
+The curriculum assures to provide opportunities for students to explore a number of transdisciplinary specialization areas including Digital Reality, Visual Computing, Communications and Networking, Proficiency in Languages and cutting-edge Technologies pertaining to Data Sciences, Robotics, and smart IOT Projects. The program allows its students to venture into a management specialization courses like Entrepreneurship Skill Development, Ethics and Policy Issues in AI Computing which emphasizes on both AI and Management studies for the scope of entrepreneurial pursuits.
+
+CAREER OPPORTUNITIES IN ARTIFICIAL INTELLIGENCE AND DATA SCIENCE
+Survey conducted by global organisations indicates that AI and DS pave the way for providing numerous job opportunities in coming years. Data Science and Artificial Intelligence (AI) career opportunities have increased phenomenally in recent times due to its promising demands in industries worldwide. AI and DS have emerged as one of the most lucrative career options in technology and business sectors.
+
+The cardinal outcome of this program is to equip students to identify potential business acumen blended with AI. The students may recognize different business trends by assessing complicated data sets and help in increasing the profits of a company by planning, analysing, developing and nourishing business intelligence solutions. The list of promising AI & Data Science career opportunities are as follows:
+
+♦ Big Data Engineer
+♦ Research Scientist
+♦ Business Intelligence Developer
+♦ AI Data Analyst
+♦ Data Scientist
+♦ Product Manager
+♦ Machine Learning Engineer
+♦ AI Engineer
+♦ Robotics Scientist
+
+VISION
+image
+♦ To promote innovative research and consultancy through effectual teaching and learning processes to develop emerging technology solutions for the benefits of industry and society.
+
+MISSION
+image
+♦ Imparting quality value based technical education and produce technology professionals with innovative thoughts and inspiring leadership skills.
+
+♦ Having rational thinking for design and development of cutting-edge products by engaging with industry stakeholders to fulfil the global demands and standards.
+
+♦ Strengthening the core competence in the domain of Artificial Intelligence and Data Science.
+
+♦ Enabling the graduates to adapt to the evolving technologies through strong fundamentals and lifelong.
+
+Programme Educational Objectives (PEOS)
+PEO1: Build next generation of highly skilled graduates equipped with a strong knowledge in Artificial intelligence (AI) and Data Science (DS) for creating innovative solutions to society’s pressing challenges.
+
+PEO2: Create engineers in addressing wide variety of challenges in managing and analysing different nature of data and able to use and develop software systems in complex data intensive and AI related applications.
+
+PEO3: Demonstrate professionalism in graduates and reflect on personal performance and self-management processes as a means of continued professional development and lifelong learning in areas of emerging technologies.
+
+Program Outcomes (POs)
+PO1: Engineering knowledge: Apply the knowledge of mathematics, science, engineering fundamentals, and Artificial Intelligence and Data Science basics to the solution of complex engineering problems.
+
+PO2: Problem analysis: Identify, formulate, review research literature, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences.
+
+PO3: Design/development of solutions: Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.
+
+PO4: Conduct investigations of complex problems: Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions.
+
+PO5: Modern tool usage: Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools including prediction and modelling to complex engineering activities with an understanding of the limitations.
+
+PO6: The engineer and society: Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.
+
+PO7: Environment and sustainability: Understand the impact of the professional engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.
+
+PO8: Ethics: Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice.
+
+PO9: Individual and team work: Function effectively as an individual, and as a member or leader in diverse teams, and in multidisciplinary settings.
+
+PO10: Communication: Communicate effectively on complex engineering activities with the engineering community and with society at large, such as, being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions.
+
+PO11: Project management and finance: Demonstrate knowledge and understanding of the engineering and management principles and apply these to one‘s own work, as a member and leader in a team, to manage projects and in multidisciplinary environments.
+
+PO12: Life-long learning: Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.
+
+Program Specific Outcomes (PSO)
+♦ Graduates should be able to evolve AI based efficient domain specific processes for effective decision making in several domains such as business and governance domains.
+
+♦ Graduates should be able to arrive at actionable fore sight, Insight, hind sight from data for solving business and engineering problems.
+
+♦ Graduates should be able to create, select and apply the theoretical knowledge of AI and Data Analytics along with practical industrial tools and techniques to manage and solve wicked societal problems.

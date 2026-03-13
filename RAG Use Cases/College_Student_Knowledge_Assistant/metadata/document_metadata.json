@@ -1,0 +1,12 @@
+{
+ "handbook_2025.pdf": {
+  "doc_type": "handbook",
+  "year": 2025,
+  "department": "all"
+ },
+ "placement_policy.pdf": {
+  "doc_type": "placement",
+  "year": 2025,
+  "department": "all"
+ }
+}

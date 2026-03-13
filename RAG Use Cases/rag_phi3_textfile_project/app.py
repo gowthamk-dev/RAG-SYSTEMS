@@ -2,18 +2,24 @@ from dataclasses import dataclass
 from typing import List
 import numpy as np
 import ollama
-from flask import Flask, render_template, request, jsonify
-import os
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+# -----------------------------
+# Document Structure
+# -----------------------------
 @dataclass
 class Document:
     id: str
     text: str
     source: str = ""
-''
+
+
+# -----------------------------
+# Load and Chunk Text File
+# -----------------------------
 def load_text_file(filepath):
     with open(filepath, "r", encoding="utf-8") as f:
         content = f.read()
@@ -25,12 +31,14 @@ def load_text_file(filepath):
         docs.append(Document(
             id=f"text_chunk_{i}",
             text=chunk,
-            source="Templesofondipudur.txt"
+            source="CIT.txt"
         ))
-    print(docs)
     return docs
 
 
+# -----------------------------
+# TF-IDF RAG System
+# -----------------------------
 class SimpleTfidfRAG:
     def __init__(self, docs: List[Document]):
         self.docs = docs
@@ -44,12 +52,14 @@ class SimpleTfidfRAG:
         return [(self.docs[i], float(sims[i])) for i in idx if sims[i] > 0]
 
 
+# -----------------------------
+# Ollama Query Function
+# -----------------------------
 def ask_ollama(model_name, query, context):
     prompt = f"""
-You are a helpful assistant.
-
-Use the provided context if it is relevant to the question.
-If the context does not contain the answer, use your own knowledge to answer accurately.
+You are a helpful assistant. Use ONLY the following context to answer.
+If the information is not available, say:
+'I could not find this in the provided document'.
 
 Context:
 {context}
@@ -61,80 +71,66 @@ Answer:
 
     response = ollama.generate(
         model=model_name,
-        prompt=prompt,
-        stream=False
+        prompt=prompt
     )
 
     return response["response"]
 
 
-# Initialize Flask app
-app = Flask(__name__, template_folder='templates')
-
-# Global variables for RAG
-rag_system = None
-model_name = "phi3"
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-@app.route('/api/search', methods=['POST'])
-def api_search():
-    try:
-        data = request.json
-        query = data.get('query', '').strip()
-        
-        if not query:
-            return jsonify({'error': 'Query cannot be empty'}), 400
-        
-        # Retrieve relevant documents
-        results = rag_system.retrieve(query, top_k=3)
-        
-        if not results:
-            return jsonify({
-                'answer': 'No matching content found in the documents.',
-                'sources': []
-            })
-        
-        # Combine top chunks into context
-        context = "\n\n".join([doc.text for doc, _ in results])
-        
-        # Get answer from Ollama
-        final_answer = ask_ollama(model_name, query, context)
-        
-        # Prepare sources for response
-        sources = [{'text': doc.text, 'score': score} for doc, score in results]
-        
-        return jsonify({
-            'answer': final_answer,
-            'sources': sources
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
+# -----------------------------
+# Main Program
+# -----------------------------
 def main():
-    global rag_system
-    
-    print("=== Loading RAG System ===")
-    
-    # Load documents
-    docs = load_text_file("Ondiputhur_Temples.txt")
-    print(f"✅ Loaded {len(docs)} document chunks")
-    
-    # Initialize RAG
-    rag_system = SimpleTfidfRAG(docs)
-    print("✅ RAG system initialized")
-    
-    # Start Flask server
-    print("\n🚀 Starting web server...")
-    print("📱 Open your browser and go to: http://localhost:5000")
-    app.run(debug=False, host='0.0.0.0', port=5000)
+    print("=== TF-IDF RAG + Ollama (Phi3 Ready) ===")
+
+    docs = load_text_file("CIT.txt")
+    rag = SimpleTfidfRAG(docs)
+
+    model_name = "phi3"   # change if needed
+
+    while True:
+        query = input("\nHola ! Marhabaa , Search for CIT : ")
+
+        if query.lower() == "exit":
+            break
+
+        # 🔥 Handle Counting Questions (Direct Python Logic)
+
+        full_text = " ".join([doc.text for doc in docs])
+
+        if "how many words" in query.lower():
+            word_count = len(full_text.split())
+            print("\n=== Final Answer ===")
+            print(word_count)
+            print("-----------------------------")
+            continue
+
+        if "how many dots" in query.lower():
+            dot_count = full_text.count(".")
+            print("\n=== Final Answer ===")
+            print(dot_count)
+            print("-----------------------------")
+            continue
+
+        # 🔎 Normal RAG Retrieval
+        results = rag.retrieve(query)
+
+        if not results:
+            print("No matching content found")
+            continue
+
+        context = "\n\n".join([doc.text for doc, _ in results])
+
+        print("\n🧠 Asking Ollama...")
+        final_answer = ask_ollama(model_name, query, context)
+
+        print("\n=== Final Answer ===")
+        print(final_answer)
+        print("-----------------------------")
 
 
+# -----------------------------
+# Run Program
+# -----------------------------
 if __name__ == "__main__":
     main()

@@ -1,0 +1,8 @@
+langchain
+chromadb
+sentence-transformers
+pypdf
+streamlit
+rank_bm25
+langchain-community
+langchain-huggingface
