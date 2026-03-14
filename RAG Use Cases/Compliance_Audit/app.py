@@ -124,7 +124,7 @@ def main():
     
     # Load documents
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-docs = load_text_file(os.path.join(BASE_DIR, "legal.txt"))
+    docs = load_text_file(os.path.join(BASE_DIR, "legal.txt"))
 
     print(f"✅ Loaded {len(docs)} document chunks")
     
