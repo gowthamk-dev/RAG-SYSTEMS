@@ -123,7 +123,8 @@ def main():
     print("=== Loading RAG System ===")
     
     # Load documents
-    docs = load_text_file("legal.txt")
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+docs = load_text_file(os.path.join(BASE_DIR, "legal.txt"))
 
     print(f"✅ Loaded {len(docs)} document chunks")
     
