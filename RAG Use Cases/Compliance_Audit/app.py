@@ -13,7 +13,7 @@ class Document:
     id: str
     text: str
     source: str = ""
-
+''
 def load_text_file(filepath):
     with open(filepath, "r", encoding="utf-8") as f:
         content = f.read()
@@ -123,8 +123,7 @@ def main():
     print("=== Loading RAG System ===")
     
     # Load documents
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    docs = load_text_file(os.path.join(BASE_DIR, "legal.txt"))
+    docs = load_text_file("legal.txt")
 
     print(f"✅ Loaded {len(docs)} document chunks")
     
