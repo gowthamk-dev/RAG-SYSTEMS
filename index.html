@@ -16,10 +16,6 @@ h1{
 margin-top:40px;
 }
 
-p{
-color:#555;
-}
-
 .container{
 display:flex;
 flex-wrap:wrap;
@@ -35,24 +31,35 @@ width:260px;
 border-radius:10px;
 box-shadow:0px 4px 10px rgba(0,0,0,0.1);
 transition:0.3s;
+cursor:pointer;
 }
 
 .card:hover{
 transform:translateY(-5px);
 }
 
-.card a{
-text-decoration:none;
-color:white;
-background:#0077ff;
-padding:10px 15px;
-border-radius:6px;
-display:inline-block;
-margin-top:10px;
+#demoBox{
+display:none;
+margin-top:40px;
 }
 
-.card a:hover{
-background:#005fcc;
+input{
+padding:10px;
+width:300px;
+}
+
+button{
+padding:10px 15px;
+background:#0077ff;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+#response{
+margin-top:20px;
+font-weight:bold;
 }
 </style>
 
@@ -65,43 +72,82 @@ background:#005fcc;
 
 <div class="container">
 
-<div class="card">
+<div class="card" onclick="openDemo('employee')">
 <h3>Employee Knowledge Base</h3>
 <p>Internal company policy assistant</p>
-<a href="RAG%20Use%20Cases/Emp_Knowledge/templates/index.html">Open Demo</a>
 </div>
 
-<div class="card">
+<div class="card" onclick="openDemo('ticket')">
 <h3>Ticket Autocomplete</h3>
 <p>Auto-suggest support ticket responses</p>
-<a href="RAG%20Use%20Cases/Ticket_Autocomplete/templates/index.html">Open Demo</a>
 </div>
 
-<div class="card">
+<div class="card" onclick="openDemo('compliance')">
 <h3>Compliance Audit</h3>
 <p>Legal policy compliance checker</p>
-<a href="RAG%20Use%20Cases/Compliance_Audit/templates/index.html">Open Demo</a>
 </div>
 
-<div class="card">
+<div class="card" onclick="openDemo('docs')">
 <h3>Docs Assist</h3>
 <p>Document question answering assistant</p>
-<a href="RAG%20Use%20Cases/Docs_Assist/templates/index.html">Open Demo</a>
-</div>
-
-<div class="card">
-<h3>RAG Phi3 Textfile</h3>
-<p>Lightweight RAG with Phi3</p>
-<a href="RAG%20Use%20Cases/rag_phi3_textfile_project/templates/index.html">Open Demo</a>
-</div>
-  
-<div class="card">
-<h3>College Student Details</h3>
-<p>Smart Assistant for Student Queries</p>
-<a href="RAG%20Use%20Cases/College_Student_Knowledge_Assistant/ui/templates/index.html">Open Demo</a>
 </div>
 
 </div>
+
+<!-- DEMO UI -->
+<div id="demoBox">
+<h2 id="demoTitle"></h2>
+
+<input type="text" id="question" placeholder="Ask your question..." />
+<button onclick="askQuestion()">Search</button>
+
+<div id="response"></div>
+</div>
+
+<script>
+
+let currentMode = "";
+
+function openDemo(mode){
+  currentMode = mode;
+  document.getElementById("demoBox").style.display = "block";
+
+  let titles = {
+    employee: "👥 Employee Assistant",
+    ticket: "🎫 Ticket Assistant",
+    compliance: "⚖️ Compliance Assistant",
+    docs: "📄 Docs Assistant"
+  };
+
+  document.getElementById("demoTitle").innerText = titles[mode];
+}
+
+function askQuestion(){
+  let q = document.getElementById("question").value.toLowerCase();
+  let ans = "";
+
+  if(currentMode === "employee"){
+    if(q.includes("age")) ans = "Employee age is 25 years.";
+    else if(q.includes("leave")) ans = "12 paid leaves per year.";
+    else ans = "No employee data found.";
+  }
+
+  else if(currentMode === "ticket"){
+    ans = "Suggested reply: Please restart your system and try again.";
+  }
+
+  else if(currentMode === "compliance"){
+    ans = "Policy is compliant with legal standards.";
+  }
+
+  else if(currentMode === "docs"){
+    ans = "Document explains system architecture and usage.";
+  }
+
+  document.getElementById("response").innerText = ans;
+}
+
+</script>
 
 </body>
 </html>
