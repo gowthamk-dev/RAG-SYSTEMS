@@ -5,19 +5,22 @@
 
 <style>
 body{
-font-family: Arial;
+font-family: Arial, sans-serif;
 background:#f4f4f4;
 text-align:center;
 margin:0;
+padding:0;
 }
 
-h1{ margin-top:30px; }
+h1{ margin-top:40px; }
+
+p{ color:#555; }
 
 .container{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-margin-top:30px;
+margin-top:40px;
 }
 
 .card{
@@ -26,15 +29,29 @@ padding:20px;
 margin:15px;
 width:260px;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-cursor:pointer;
+box-shadow:0px 4px 10px rgba(0,0,0,0.1);
+transition:0.3s;
 }
 
 .card:hover{
-transform:scale(1.05);
+transform:translateY(-5px);
 }
 
-#demoBox{
+.card button{
+color:white;
+background:#0077ff;
+padding:10px 15px;
+border:none;
+border-radius:6px;
+margin-top:10px;
+cursor:pointer;
+}
+
+.card button:hover{
+background:#005fcc;
+}
+
+#demo{
 display:none;
 margin-top:40px;
 }
@@ -44,17 +61,10 @@ padding:10px;
 width:300px;
 }
 
-button{
-padding:10px;
-background:#0077ff;
-color:white;
-border:none;
-border-radius:5px;
-}
-
 #response{
 margin-top:20px;
 font-weight:bold;
+font-size:18px;
 }
 </style>
 
@@ -63,60 +73,77 @@ font-weight:bold;
 <body>
 
 <h1>🧠 RAG Enterprise Use Cases</h1>
-<p>Select a use case and ask a question</p>
+<p>Interactive MVP Demonstration</p>
 
 <div class="container">
 
-<div class="card" onclick="openDemo('employee')">
-<h3>Employee Knowledge</h3>
-<p>Company policy assistant</p>
+<div class="card">
+<h3>Employee Knowledge Base</h3>
+<p>Internal company policy assistant</p>
+<button onclick="openDemo('employee')">Open Demo</button>
 </div>
 
-<div class="card" onclick="openDemo('ticket')">
+<div class="card">
 <h3>Ticket Autocomplete</h3>
-<p>Support responses</p>
+<p>Auto-suggest support ticket responses</p>
+<button onclick="openDemo('ticket')">Open Demo</button>
 </div>
 
-<div class="card" onclick="openDemo('compliance')">
+<div class="card">
 <h3>Compliance Audit</h3>
-<p>Legal checker</p>
+<p>Legal policy compliance checker</p>
+<button onclick="openDemo('compliance')">Open Demo</button>
 </div>
 
-<div class="card" onclick="openDemo('docs')">
+<div class="card">
 <h3>Docs Assist</h3>
-<p>Document Q&A</p>
+<p>Document question answering assistant</p>
+<button onclick="openDemo('docs')">Open Demo</button>
 </div>
 
-<div class="card" onclick="openDemo('phi3')">
-<h3>RAG Phi3</h3>
-<p>Textfile assistant</p>
+<div class="card">
+<h3>RAG Phi3 Textfile</h3>
+<p>Lightweight RAG with Phi3</p>
+<button onclick="openDemo('phi3')">Open Demo</button>
 </div>
 
-<div class="card" onclick="openDemo('college')">
-<h3>College Assistant</h3>
-<p>Student queries</p>
+<div class="card">
+<h3>College Student Details</h3>
+<p>Smart Assistant for Student Queries</p>
+<button onclick="openDemo('college')">Open Demo</button>
 </div>
 
 </div>
 
-<div id="demoBox">
+<!-- DEMO SECTION -->
+<div id="demo">
 <h2 id="title"></h2>
 
 <input id="question" placeholder="Ask your question..." />
 <button onclick="ask()">Search</button>
+
+<!-- Sample Questions -->
+<p><b>Try asking:</b></p>
+<ul style="list-style:none; padding:0;">
+<li>What is employee age?</li>
+<li>What are leave policies?</li>
+<li>How does RAG work?</li>
+<li>What is attendance rule?</li>
+<li>Fix login error</li>
+</ul>
 
 <div id="response"></div>
 </div>
 
 <script>
 
-let mode = "";
+let mode="";
 
 function openDemo(m){
   mode = m;
-  document.getElementById("demoBox").style.display="block";
+  document.getElementById("demo").style.display="block";
 
-  const titles = {
+  const titles={
     employee:"👥 Employee Assistant",
     ticket:"🎫 Ticket Assistant",
     compliance:"⚖️ Compliance Assistant",
@@ -125,7 +152,7 @@ function openDemo(m){
     college:"🎓 College Assistant"
   };
 
-  document.getElementById("title").innerText = titles[m];
+  document.getElementById("title").innerText=titles[m];
 }
 
 function ask(){
@@ -135,39 +162,61 @@ function ask(){
   // EMPLOYEE
   if(mode==="employee"){
     if(q.includes("age")) ans="Employee age is 25 years.";
-    else if(q.includes("leave")) ans="12 paid leaves per year.";
-    else if(q.includes("salary")) ans="Salary is confidential.";
+    else if(q.includes("leave")) ans="Employees get 12 paid leaves per year.";
+    else if(q.includes("salary")) ans="Salary details are confidential.";
+    else if(q.includes("working hours")) ans="Working hours are 9 AM to 6 PM.";
+    else if(q.includes("policy")) ans="Company follows strict HR policies.";
+    else if(q.includes("holiday")) ans="Company holidays follow national calendar.";
     else ans="No employee data found.";
   }
 
   // TICKET
   else if(mode==="ticket"){
     if(q.includes("error")) ans="Please restart your system.";
-    else ans="Suggested response: Check your connection.";
+    else if(q.includes("login")) ans="Check your username and password.";
+    else if(q.includes("network")) ans="Please check your internet connection.";
+    else if(q.includes("slow")) ans="Clear cache and restart application.";
+    else if(q.includes("crash")) ans="Update software to latest version.";
+    else ans="Suggested response: Contact support team.";
   }
 
   // COMPLIANCE
   else if(mode==="compliance"){
-    if(q.includes("policy")) ans="Policy is compliant.";
+    if(q.includes("policy")) ans="Policy is compliant with legal standards.";
+    else if(q.includes("gdpr")) ans="System follows GDPR data protection rules.";
+    else if(q.includes("security")) ans="All data is encrypted securely.";
+    else if(q.includes("violation")) ans="No compliance violations detected.";
+    else if(q.includes("audit")) ans="Audit logs are maintained regularly.";
     else ans="No compliance issues found.";
   }
 
   // DOCS
   else if(mode==="docs"){
-    if(q.includes("architecture")) ans="System uses RAG pipeline.";
+    if(q.includes("architecture")) ans="System uses RAG pipeline architecture.";
+    else if(q.includes("technology")) ans="Built using Python, embeddings, and vector DB.";
+    else if(q.includes("rag")) ans="RAG combines retrieval with generation.";
+    else if(q.includes("api")) ans="System uses REST APIs.";
+    else if(q.includes("database")) ans="Uses vector DB like Chroma.";
     else ans="Document info not found.";
   }
 
   // PHI3
   else if(mode==="phi3"){
-    if(q.includes("temple")) ans="Ondiputhur temple is famous.";
+    if(q.includes("temple")) ans="Ondiputhur temple is very famous.";
+    else if(q.includes("location")) ans="Located in Coimbatore region.";
+    else if(q.includes("history")) ans="Temple has rich cultural history.";
+    else if(q.includes("festival")) ans="Major festivals celebrated yearly.";
     else ans="No data found in textfile.";
   }
 
   // COLLEGE
   else if(mode==="college"){
-    if(q.includes("attendance")) ans="75% attendance required.";
-    else if(q.includes("placement")) ans="Placement starts in final year.";
+    if(q.includes("attendance")) ans="Minimum 75% attendance required.";
+    else if(q.includes("placement")) ans="Placements start in final year.";
+    else if(q.includes("exam")) ans="Exams are conducted semester-wise.";
+    else if(q.includes("library")) ans="Library open 9 AM to 5 PM.";
+    else if(q.includes("scholarship")) ans="Scholarships based on merit.";
+    else if(q.includes("rules")) ans="Students must follow discipline rules.";
     else ans="No student data found.";
   }
 
