@@ -155,6 +155,100 @@ function openDemo(m){
   document.getElementById("title").innerText=titles[m];
 }
 
+function showSuggestions(m){
+  let data = {
+    employee:[
+      "What is employee age?",
+      "How many leaves are allowed?",
+      "What are working hours?",
+      "Explain company policy",
+      "Are salaries public?",
+      "List company holidays",
+      "Is remote work allowed?",
+      "What is dress code?",
+      "How performance is evaluated?",
+      "What is probation period?"
+    ],
+
+    ticket:[
+      "Fix login error",
+      "System not working",
+      "App is slow",
+      "Network issue solution",
+      "How to reset password?",
+      "Software crashing fix",
+      "Unable to login",
+      "Error code 500 solution",
+      "How to update system?",
+      "Customer complaint reply"
+    ],
+
+    compliance:[
+      "Is policy compliant?",
+      "Explain GDPR rules",
+      "Any security issues?",
+      "Check audit logs",
+      "Data protection rules?",
+      "Legal risks present?",
+      "Is system secure?",
+      "Compliance violation check",
+      "Privacy policy details",
+      "Audit process details"
+    ],
+
+    docs:[
+      "Explain system architecture",
+      "What is RAG?",
+      "Which technologies used?",
+      "How API works?",
+      "Database used?",
+      "Explain embeddings",
+      "How retrieval works?",
+      "System workflow",
+      "Frontend technologies",
+      "Backend structure"
+    ],
+
+    phi3:[
+      "Tell about temple",
+      "Temple location?",
+      "Temple history?",
+      "Festival details?",
+      "Why temple is famous?",
+      "Nearby attractions?",
+      "Temple timings?",
+      "Cultural importance?",
+      "Temple architecture?",
+      "Events conducted?"
+    ],
+
+    college:[
+      "What is attendance rule?",
+      "Placement details?",
+      "Exam pattern?",
+      "Library timings?",
+      "Scholarship details?",
+      "College rules?",
+      "Course syllabus?",
+      "Academic calendar?",
+      "Hostel facilities?",
+      "Grading system?"
+    ]
+  };
+
+  let html = "<p><b>Try asking:</b></p><ul style='list-style:none;padding:0'>";
+  data[m].forEach(q=>{
+    html += `<li onclick="fillQuestion('${q}')" style="cursor:pointer;color:blue">${q}</li>`;
+  });
+  html += "</ul>";
+
+  document.getElementById("suggestions").innerHTML = html;
+}
+
+function fillQuestion(q){
+  document.getElementById("question").value = q;
+}
+
 function ask(){
   let q = document.getElementById("question").value.toLowerCase();
   let ans = "";
@@ -162,66 +256,86 @@ function ask(){
   // EMPLOYEE
   if(mode==="employee"){
     if(q.includes("age")) ans="Employee age is 25 years.";
-    else if(q.includes("leave")) ans="Employees get 12 paid leaves per year.";
-    else if(q.includes("salary")) ans="Salary details are confidential.";
-    else if(q.includes("working hours")) ans="Working hours are 9 AM to 6 PM.";
-    else if(q.includes("policy")) ans="Company follows strict HR policies.";
-    else if(q.includes("holiday")) ans="Company holidays follow national calendar.";
+    else if(q.includes("leave")) ans="12 paid leaves per year.";
+    else if(q.includes("working")) ans="Working hours are 9 AM to 6 PM.";
+    else if(q.includes("policy")) ans="Company follows HR policies.";
+    else if(q.includes("salary")) ans="Salary is confidential.";
+    else if(q.includes("holiday")) ans="Company follows national holidays.";
+    else if(q.includes("remote")) ans="Remote work allowed based on role.";
+    else if(q.includes("dress")) ans="Formal dress code required.";
+    else if(q.includes("performance")) ans="Evaluated quarterly.";
+    else if(q.includes("probation")) ans="Probation period is 6 months.";
     else ans="No employee data found.";
   }
 
   // TICKET
   else if(mode==="ticket"){
-    if(q.includes("error")) ans="Please restart your system.";
-    else if(q.includes("login")) ans="Check your username and password.";
-    else if(q.includes("network")) ans="Please check your internet connection.";
-    else if(q.includes("slow")) ans="Clear cache and restart application.";
-    else if(q.includes("crash")) ans="Update software to latest version.";
-    else ans="Suggested response: Contact support team.";
+    if(q.includes("login")) ans="Check credentials and reset password.";
+    else if(q.includes("slow")) ans="Clear cache and restart.";
+    else if(q.includes("network")) ans="Check internet connection.";
+    else if(q.includes("reset")) ans="Use 'Forgot Password' option.";
+    else if(q.includes("crash")) ans="Update software version.";
+    else if(q.includes("error")) ans="Restart system and retry.";
+    else if(q.includes("update")) ans="Install latest updates.";
+    else if(q.includes("complaint")) ans="Forward to support team.";
+    else ans="Suggested response: Contact support.";
   }
 
   // COMPLIANCE
   else if(mode==="compliance"){
-    if(q.includes("policy")) ans="Policy is compliant with legal standards.";
-    else if(q.includes("gdpr")) ans="System follows GDPR data protection rules.";
-    else if(q.includes("security")) ans="All data is encrypted securely.";
-    else if(q.includes("violation")) ans="No compliance violations detected.";
-    else if(q.includes("audit")) ans="Audit logs are maintained regularly.";
+    if(q.includes("gdpr")) ans="System follows GDPR standards.";
+    else if(q.includes("security")) ans="Data is encrypted securely.";
+    else if(q.includes("audit")) ans="Audit logs maintained.";
+    else if(q.includes("violation")) ans="No violations detected.";
+    else if(q.includes("policy")) ans="Policy is compliant.";
+    else if(q.includes("privacy")) ans="Privacy policy enforced.";
+    else if(q.includes("risk")) ans="Low legal risk.";
     else ans="No compliance issues found.";
   }
 
   // DOCS
   else if(mode==="docs"){
-    if(q.includes("architecture")) ans="System uses RAG pipeline architecture.";
-    else if(q.includes("technology")) ans="Built using Python, embeddings, and vector DB.";
-    else if(q.includes("rag")) ans="RAG combines retrieval with generation.";
-    else if(q.includes("api")) ans="System uses REST APIs.";
-    else if(q.includes("database")) ans="Uses vector DB like Chroma.";
+    if(q.includes("architecture")) ans="RAG pipeline architecture used.";
+    else if(q.includes("rag")) ans="Retrieval + Generation system.";
+    else if(q.includes("technology")) ans="Python, embeddings, vector DB.";
+    else if(q.includes("api")) ans="REST API based system.";
+    else if(q.includes("database")) ans="Chroma vector database.";
+    else if(q.includes("embedding")) ans="Text converted to vectors.";
+    else if(q.includes("retrieval")) ans="Relevant docs fetched.";
+    else if(q.includes("workflow")) ans="Query → Retrieve → Generate.";
     else ans="Document info not found.";
   }
 
   // PHI3
   else if(mode==="phi3"){
-    if(q.includes("temple")) ans="Ondiputhur temple is very famous.";
-    else if(q.includes("location")) ans="Located in Coimbatore region.";
-    else if(q.includes("history")) ans="Temple has rich cultural history.";
-    else if(q.includes("festival")) ans="Major festivals celebrated yearly.";
-    else ans="No data found in textfile.";
+    if(q.includes("temple")) ans="Ondiputhur temple is famous.";
+    else if(q.includes("location")) ans="Located in Coimbatore.";
+    else if(q.includes("history")) ans="Rich cultural history.";
+    else if(q.includes("festival")) ans="Annual festivals celebrated.";
+    else if(q.includes("architecture")) ans="Traditional South Indian style.";
+    else if(q.includes("timing")) ans="Open from morning to evening.";
+    else ans="No data found.";
   }
 
   // COLLEGE
   else if(mode==="college"){
-    if(q.includes("attendance")) ans="Minimum 75% attendance required.";
-    else if(q.includes("placement")) ans="Placements start in final year.";
-    else if(q.includes("exam")) ans="Exams are conducted semester-wise.";
-    else if(q.includes("library")) ans="Library open 9 AM to 5 PM.";
-    else if(q.includes("scholarship")) ans="Scholarships based on merit.";
-    else if(q.includes("rules")) ans="Students must follow discipline rules.";
+    if(q.includes("attendance")) ans="75% attendance required.";
+    else if(q.includes("placement")) ans="Final year placements.";
+    else if(q.includes("exam")) ans="Semester-based exams.";
+    else if(q.includes("library")) ans="9 AM to 5 PM.";
+    else if(q.includes("scholarship")) ans="Merit-based scholarships.";
+    else if(q.includes("rules")) ans="Strict discipline required.";
+    else if(q.includes("syllabus")) ans="Available per department.";
+    else if(q.includes("calendar")) ans="Academic calendar yearly.";
+    else if(q.includes("hostel")) ans="Hostel facilities available.";
+    else if(q.includes("grading")) ans="CGPA grading system.";
     else ans="No student data found.";
   }
 
   document.getElementById("response").innerText = ans;
 }
+
+
 
 </script>
 
