@@ -5,22 +5,19 @@
 
 <style>
 body{
-font-family: Arial, sans-serif;
+font-family: Arial;
 background:#f4f4f4;
 text-align:center;
 margin:0;
-padding:0;
 }
 
-h1{
-margin-top:40px;
-}
+h1{ margin-top:30px; }
 
 .container{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-margin-top:40px;
+margin-top:30px;
 }
 
 .card{
@@ -29,13 +26,12 @@ padding:20px;
 margin:15px;
 width:260px;
 border-radius:10px;
-box-shadow:0px 4px 10px rgba(0,0,0,0.1);
-transition:0.3s;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 cursor:pointer;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:scale(1.05);
 }
 
 #demoBox{
@@ -49,12 +45,11 @@ width:300px;
 }
 
 button{
-padding:10px 15px;
+padding:10px;
 background:#0077ff;
 color:white;
 border:none;
 border-radius:5px;
-cursor:pointer;
 }
 
 #response{
@@ -68,80 +63,112 @@ font-weight:bold;
 <body>
 
 <h1>🧠 RAG Enterprise Use Cases</h1>
-<p>Interactive MVP Demonstration</p>
+<p>Select a use case and ask a question</p>
 
 <div class="container">
 
 <div class="card" onclick="openDemo('employee')">
-<h3>Employee Knowledge Base</h3>
-<p>Internal company policy assistant</p>
+<h3>Employee Knowledge</h3>
+<p>Company policy assistant</p>
 </div>
 
 <div class="card" onclick="openDemo('ticket')">
 <h3>Ticket Autocomplete</h3>
-<p>Auto-suggest support ticket responses</p>
+<p>Support responses</p>
 </div>
 
 <div class="card" onclick="openDemo('compliance')">
 <h3>Compliance Audit</h3>
-<p>Legal policy compliance checker</p>
+<p>Legal checker</p>
 </div>
 
 <div class="card" onclick="openDemo('docs')">
 <h3>Docs Assist</h3>
-<p>Document question answering assistant</p>
+<p>Document Q&A</p>
+</div>
+
+<div class="card" onclick="openDemo('phi3')">
+<h3>RAG Phi3</h3>
+<p>Textfile assistant</p>
+</div>
+
+<div class="card" onclick="openDemo('college')">
+<h3>College Assistant</h3>
+<p>Student queries</p>
 </div>
 
 </div>
 
-<!-- DEMO UI -->
 <div id="demoBox">
-<h2 id="demoTitle"></h2>
+<h2 id="title"></h2>
 
-<input type="text" id="question" placeholder="Ask your question..." />
-<button onclick="askQuestion()">Search</button>
+<input id="question" placeholder="Ask your question..." />
+<button onclick="ask()">Search</button>
 
 <div id="response"></div>
 </div>
 
 <script>
 
-let currentMode = "";
+let mode = "";
 
-function openDemo(mode){
-  currentMode = mode;
-  document.getElementById("demoBox").style.display = "block";
+function openDemo(m){
+  mode = m;
+  document.getElementById("demoBox").style.display="block";
 
-  let titles = {
-    employee: "👥 Employee Assistant",
-    ticket: "🎫 Ticket Assistant",
-    compliance: "⚖️ Compliance Assistant",
-    docs: "📄 Docs Assistant"
+  const titles = {
+    employee:"👥 Employee Assistant",
+    ticket:"🎫 Ticket Assistant",
+    compliance:"⚖️ Compliance Assistant",
+    docs:"📄 Docs Assistant",
+    phi3:"🤖 Phi3 Assistant",
+    college:"🎓 College Assistant"
   };
 
-  document.getElementById("demoTitle").innerText = titles[mode];
+  document.getElementById("title").innerText = titles[m];
 }
 
-function askQuestion(){
+function ask(){
   let q = document.getElementById("question").value.toLowerCase();
   let ans = "";
 
-  if(currentMode === "employee"){
-    if(q.includes("age")) ans = "Employee age is 25 years.";
-    else if(q.includes("leave")) ans = "12 paid leaves per year.";
-    else ans = "No employee data found.";
+  // EMPLOYEE
+  if(mode==="employee"){
+    if(q.includes("age")) ans="Employee age is 25 years.";
+    else if(q.includes("leave")) ans="12 paid leaves per year.";
+    else if(q.includes("salary")) ans="Salary is confidential.";
+    else ans="No employee data found.";
   }
 
-  else if(currentMode === "ticket"){
-    ans = "Suggested reply: Please restart your system and try again.";
+  // TICKET
+  else if(mode==="ticket"){
+    if(q.includes("error")) ans="Please restart your system.";
+    else ans="Suggested response: Check your connection.";
   }
 
-  else if(currentMode === "compliance"){
-    ans = "Policy is compliant with legal standards.";
+  // COMPLIANCE
+  else if(mode==="compliance"){
+    if(q.includes("policy")) ans="Policy is compliant.";
+    else ans="No compliance issues found.";
   }
 
-  else if(currentMode === "docs"){
-    ans = "Document explains system architecture and usage.";
+  // DOCS
+  else if(mode==="docs"){
+    if(q.includes("architecture")) ans="System uses RAG pipeline.";
+    else ans="Document info not found.";
+  }
+
+  // PHI3
+  else if(mode==="phi3"){
+    if(q.includes("temple")) ans="Ondiputhur temple is famous.";
+    else ans="No data found in textfile.";
+  }
+
+  // COLLEGE
+  else if(mode==="college"){
+    if(q.includes("attendance")) ans="75% attendance required.";
+    else if(q.includes("placement")) ans="Placement starts in final year.";
+    else ans="No student data found.";
   }
 
   document.getElementById("response").innerText = ans;
