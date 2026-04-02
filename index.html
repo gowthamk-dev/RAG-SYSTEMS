@@ -123,7 +123,7 @@ font-size:18px;
 <button onclick="ask()">Search</button>
 
 <!-- Sample Questions -->
-<p><b>Try asking:</b></p>
+<p><b>Suggestions:</b></p>
 <ul style="list-style:none; padding:0;">
 <li>What is employee age?</li>
 <li>What are leave policies?</li>
@@ -153,6 +153,8 @@ function openDemo(m){
   };
 
   document.getElementById("title").innerText=titles[m];
+
+  showSuggestions(m);
 }
 
 function showSuggestions(m){
@@ -335,9 +337,7 @@ function ask(){
   document.getElementById("response").innerText = ans;
 }
 
-
-
 </script>
 
-</body>
+  </body>
 </html>
