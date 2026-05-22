@@ -204,3 +204,4 @@ Add citation highlighting in responses
 This project demonstrates how Retrieval-Augmented Generation (RAG) can transform a general-purpose LLM into a reliable enterprise knowledge assistant.
 
 By grounding responses in authorized documents, the system delivers accurate, explainable, and domain-specific answers, making it ideal for real-world enterprise applications.
+
