@@ -8,7 +8,7 @@ The system retrieves relevant information from **structured text documents** and
 
 Instead of relying only on the LLM’s internal knowledge, the system **injects retrieved document context before generating responses**, significantly reducing hallucinations and improving answer reliability.
 
-🔗 **Live MVP Demo**
+🔗 **Sample MVP Demo**
 
 https://gowthamvanjimuthu-cyber.github.io/RAG-SYSTEMS/
 
